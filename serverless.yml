@@ -1,0 +1,35 @@
+service: chatgpt-demo
+## deploy จะชื่อว่าอะไร
+## ชื่อservice-state-funcion
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-southeast-1
+
+## apply to global scope
+plugins:
+  - serverless-offline
+
+## hello is name function
+## handler name file | hello name function
+## run local test | serverless invoke local --function hello
+## short sls
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+    - httpApi:
+        path: /
+        method: get
+    - httpApi:
+        path: /weather
+        method: post
